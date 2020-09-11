@@ -77,14 +77,14 @@ fastify.queues['my-queue'].add({data:'some data'})
 
 ### Testing
 
-If you testing app, you need to close created queues.
+If you are testing any app, you need to close created queues.
 
 We recommend follow after tutorial: 
 
 > https://www.fastify.io/docs/latest/Testing/
 
 
-Exemplary code:
+Sample code:
 
 ```
 const Fastify = require('fastify')
