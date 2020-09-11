@@ -75,6 +75,41 @@ start();
 fastify.queues['my-queue'].add({data:'some data'})
 ```
 
+### Testing
+
+If you testing app, you need to close created queues.
+
+We recommend follow after tutorial: 
+
+> https://www.fastify.io/docs/latest/Testing/
+
+
+Exemplary code:
+
+```
+const Fastify = require('fastify')
+const fp = require('fastify-plugin')
+const App = require('../src')
+
+function build (t) {
+  const app = Fastify()
+
+  app.register(fp(App), config())
+  
+  t.tearDown(async () => {
+    await app.queues['my-queue'].close()
+    await app.close()
+  })
+
+  return app
+}
+
+module.exports = {
+  config,
+  build
+}
+```
+
 ## Options
 
 * path: specify folder where queue handlers are present. Exclude to use the default folder 'queues'
